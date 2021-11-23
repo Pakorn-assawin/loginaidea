@@ -27,6 +27,13 @@ import UpgradeToPro from "views/Upgrade.js";
 
 var routes = [
   {
+    path: "/tables",
+    name: "Table List",
+    icon: "nc-icon nc-tile-56",
+    component: TableList,
+    layout: "/admin",
+  },
+  {
     path: "/dashboard",
     name: "Dashboard",
     icon: "nc-icon nc-bank",
@@ -61,13 +68,7 @@ var routes = [
     component: UserPage,
     layout: "/admin",
   },
-  {
-    path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: TableList,
-    layout: "/admin",
-  },
+  
   {
     path: "/typography",
     name: "Typography",
