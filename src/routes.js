@@ -27,10 +27,10 @@ import UpgradeToPro from "views/Upgrade.js";
 
 var routes = [
   {
-    path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: TableList,
+    path: "/user-page",
+    name: "User Profile",
+    icon: "nc-icon nc-single-02",
+    component: UserPage,
     layout: "/admin",
   },
   {
@@ -40,14 +40,7 @@ var routes = [
     component: Dashboard,
     layout: "/admin",
   },
-  {
-    path: "/icons",
-    name: "Icons",
-    icon: "nc-icon nc-diamond",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
+    {
     path: "/maps",
     name: "Maps",
     icon: "nc-icon nc-pin-3",
@@ -62,18 +55,24 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/user-page",
-    name: "User Profile",
-    icon: "nc-icon nc-single-02",
-    component: UserPage,
+    path: "/tables",
+    name: "Table List",
+    icon: "nc-icon nc-tile-56",
+    component: TableList,
     layout: "/admin",
   },
-  
   {
     path: "/typography",
     name: "Typography",
     icon: "nc-icon nc-caps-small",
     component: Typography,
+    layout: "/admin",
+  },
+  {
+    path: "/icons",
+    name: "Icons",
+    icon: "nc-icon nc-diamond",
+    component: Icons,
     layout: "/admin",
   },
   {
