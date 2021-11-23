@@ -52,15 +52,14 @@ function User() {
                     <img
                       alt="..."
                       className="avatar border-gray"
-                      src={require("assets/img/mike.jpg").default}
+                      src={require("assets/img/NesTo.jpg").default}
                     />
-                    <h5 className="title">Chet Faker</h5>
+                    <h5 className="title">Nest'To</h5>
                   </a>
-                  <p className="description">@chetfaker</p>
+                  <p className="description">@Aideamail</p>
                 </div>
                 <p className="description text-center">
-                  "I like the way you work it <br />
-                  No diggity <br />I wanna bag it up"
+               " I want to be rich "
                 </p>
               </CardBody>
               <CardFooter>
@@ -69,7 +68,7 @@ function User() {
                   <Row>
                     <Col className="ml-auto" lg="3" md="6" xs="6">
                       <h5>
-                        12 <br />
+                        90 <br />
                         <small>Files</small>
                       </h5>
                     </Col>
@@ -81,7 +80,7 @@ function User() {
                     </Col>
                     <Col className="mr-auto" lg="3">
                       <h5>
-                        24,6$ <br />
+                        24$ <br />
                         <small>Spent</small>
                       </h5>
                     </Col>
@@ -91,7 +90,7 @@ function User() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Team Members</CardTitle>
+                <CardTitle tag="h4">girl stock</CardTitle>
               </CardHeader>
               <CardBody>
                 <ul className="list-unstyled team-members">
@@ -103,7 +102,7 @@ function User() {
                             alt="..."
                             className="img-circle img-no-padding img-responsive"
                             src={
-                              require("assets/img/faces/ayo-ogunseinde-2.jpg")
+                              require("assets/img/faces/joe-gardner-2.jpg")
                                 .default
                             }
                           />
@@ -167,7 +166,7 @@ function User() {
                             alt="..."
                             className="img-circle img-no-padding img-responsive"
                             src={
-                              require("assets/img/faces/clem-onojeghuo-2.jpg")
+                              require("assets/img/faces/kaci-baum-2.jpg")
                                 .default
                             }
                           />
