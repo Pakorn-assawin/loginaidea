@@ -40,7 +40,7 @@ function Sidebar(props) {
           className="simple-text logo-mini"
         >
           <div className="logo-img">
-            <img src={logo} alt="react-logo" />
+          <img src={('./AiDea.png')} />
           </div>
         </a>
         <a
