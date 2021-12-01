@@ -1,7 +1,8 @@
 
 import React from "react";
 // reactstrap components
-import { Card, CardHeader, CardBody,CardTitle,Table, Row, Col } from "reactstrap";
+import { Card, CardHeader, CardBody,CardTitle,Table, Row, Col,Button,InputGroup,InputGroupText,
+  InputGroupAddon,Input, } from "reactstrap";
 
 
 const MapWrapper = () => {
@@ -199,26 +200,53 @@ function Map() {
           </Col>
 
           <Col md="12">
+         
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Simple Table</CardTitle>
-              </CardHeader>
+              <Row>
+                <Col md="5">
+                    <CardTitle tag="h4">All Projects
+                    </CardTitle>
+                </Col>
+                <Col md="3">
+                    <InputGroup className="no-border">
+                        <Input placeholder="Search..." />
+                            <InputGroupAddon addonType="append">
+                                <InputGroupText>
+                                    <i className="nc-icon nc-zoom-split" />
+                                </InputGroupText>
+                            </InputGroupAddon>
+                    </InputGroup>
+                 </Col>
+                          <Col md="4">
+                              <Button
+                                className="btn-round"
+                                color="primary"
+                                type="submit"
+                                href="src/views/Icons.js"
+                                >
+                                + New Project
+                              </Button>
+                          </Col>
+                   
+                    </Row>
+                 </CardHeader>
               <CardBody>
                 <Table responsive>
                   <thead className="text-primary">
                     <tr>
-                      <th>Name</th>
-                      <th>Country</th>
-                      <th>City</th>
-                      <th className="text-right">Salary</th>
+                      <th>Project name</th>
+                      <th>Circuit-km</th>
+                      <th>Created</th>
+                      <th className="text-right">Issue</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Dakota Rice</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                      <td className="text-right">$36,738</td>
+                      <td>PEAWBA01</td>
+                      <td>100</td>
+                      <td>11 Apr 2021</td>
+                      <td className="text-right">1</td>
                     </tr>
                     <tr>
                       <td>Minerva Hooper</td>

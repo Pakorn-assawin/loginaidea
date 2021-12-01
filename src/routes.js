@@ -57,13 +57,13 @@ var routes = [
     layout: "/admin",
   },
   // Icons
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "nc-icon nc-diamond",
-  //   component: Icons,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/icons",
+    name: "Icons",
+    icon: "nc-icon nc-diamond",
+    component: Icons,
+    layout: "/admin",
+  },
   // {
   //   pro: true,
   //   path: "/upgrade",

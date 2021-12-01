@@ -1,554 +1,405 @@
-/*!
+import React,{useState,useEffect} from "react";
+import axios from "axios";
+import { Button,Card,Row,Col,Container,Navbar,Nav,Jumbotron,ProgressBar } from 'react-bootstrap';
 
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
+const Icons = () => {
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  const [img,setImg] = useState("https://www.freeiconspng.com/uploads/blue-up-file-circle-document-upload-icon-23.png") 
+  
+  const [picresult,setPicresult] = useState("https://static.vecteezy.com/system/resources/thumbnails/003/070/061/small/ai-artificial-intelligence-logo-artificial-intelligence-vector.jpg") 
+  
+  const [send,setSend] = useState(false)
 
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
+  const [result,setResult] = useState([])
 
-* Coded by Creative Tim
+  const picinputHandler = (event) => {
 
-=========================================================
+        const reader = new FileReader();
+        const imageFile = event.target.files[0];
+        console.log("imageFile=",imageFile)
+    
+        // read base64 img
+        reader.readAsDataURL(imageFile)
+  
+          // operate img after read base64 img
+          reader.onload = () => {
+            // read done or not
+            if(reader.readyState === 2){
+              // result base64 img (convert image file to base64 img)
+              setImg(reader.result)
+              console.log("reader.result",reader.result)
+            }
+          
+        }
+        
+  }
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  
 
-*/
-import React from "react";
+  const resetpicHandler = () => {
+    setImg("https://www.freeiconspng.com/uploads/blue-up-file-circle-document-upload-icon-23.png")
+    setSend(false)
+    setResult("")
+    setPicresult("")
+  }
 
-// reactstrap components
-import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
+  const submitpic = () => {
 
-function Icons() {
-  return (
-    <>
-      <div className="content">
-        <Row>
-          <Col md="12">
-            <Card className="demo-icons">
-              <CardHeader>
-                <CardTitle tag="h5">100 Awesome Nucleo Icons</CardTitle>
-                <p className="card-category">
-                  Handcrafted by our friends from{" "}
-                  <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
-                </p>
-              </CardHeader>
-              <CardBody className="all-icons">
-                <div id="icons-wrapper">
-                  <section>
-                    <ul>
-                      <li>
-                        <i className="nc-icon nc-air-baloon" />
-                        <p>nc-air-baloon</p>
-                        <em>\ea01</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-album-2" />
-                        <p>nc-album-2</p>
-                        <em>\ea02</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-alert-circle-i" />
-                        <p>nc-alert-circle-i</p>
-                        <em>\ea04</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-align-center" />
-                        <p>nc-align-center</p>
-                        <em>\ea03</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-align-left-2" />
-                        <p>nc-align-left-2</p>
-                        <em>\ea05</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-ambulance" />
-                        <p>nc-ambulance</p>
-                        <em>\ea06</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-app" />
-                        <p>nc-app</p>
-                        <em>\ea07</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-atom" />
-                        <p>nc-atom</p>
-                        <em>\ea08</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-badge" />
-                        <p>nc-badge</p>
-                        <em>\ea09</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bag-16" />
-                        <p>nc-bag-16</p>
-                        <em>\ea0a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bank" />
-                        <p>nc-bank</p>
-                        <em>\ea0b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-basket" />
-                        <p>nc-basket</p>
-                        <em>\ea0c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bell-55" />
-                        <p>nc-bell-55</p>
-                        <em>\ea0d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bold" />
-                        <p>nc-bold</p>
-                        <em>\ea0e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-book-bookmark" />
-                        <p>nc-book-bookmark</p>
-                        <em>\ea0f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bookmark-2" />
-                        <p>nc-bookmark-2</p>
-                        <em>\ea10</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-box-2" />
-                        <p>nc-box-2</p>
-                        <em>\ea11</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-box" />
-                        <p>nc-box</p>
-                        <em>\ea12</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-briefcase-24" />
-                        <p>nc-briefcase-24</p>
-                        <em>\ea13</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bulb-63" />
-                        <p>nc-bulb-63</p>
-                        <em>\ea14</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bullet-list-67" />
-                        <p>nc-bullet-list-67</p>
-                        <em>\ea15</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-bus-front-12" />
-                        <p>nc-bus-front-12</p>
-                        <em>\ea16</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-button-pause" />
-                        <p>nc-button-pause</p>
-                        <em>\ea17</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-button-play" />
-                        <p>nc-button-play</p>
-                        <em>\ea18</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-button-power" />
-                        <p>nc-button-power</p>
-                        <em>\ea19</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-calendar-60" />
-                        <p>nc-calendar-60</p>
-                        <em>\ea1a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-camera-compact" />
-                        <p>nc-camera-compact</p>
-                        <em>\ea1b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-caps-small" />
-                        <p>nc-caps-small</p>
-                        <em>\ea1c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-cart-simple" />
-                        <p>nc-cart-simple</p>
-                        <em>\ea1d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-chart-bar-32" />
-                        <p>nc-chart-bar-32</p>
-                        <em>\ea1e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-chart-pie-36" />
-                        <p>nc-chart-pie-36</p>
-                        <em>\ea1f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-chat-33" />
-                        <p>nc-chat-33</p>
-                        <em>\ea20</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-check-2" />
-                        <p>nc-check-2</p>
-                        <em>\ea21</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-circle-10" />
-                        <p>nc-circle-10</p>
-                        <em>\ea22</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-cloud-download-93" />
-                        <p>nc-cloud-download-93</p>
-                        <em>\ea23</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-cloud-upload-94" />
-                        <p>nc-cloud-upload-94</p>
-                        <em>\ea24</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-compass-05" />
-                        <p>nc-compass-05</p>
-                        <em>\ea25</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-controller-modern" />
-                        <p>nc-controller-modern</p>
-                        <em>\ea26</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-credit-card" />
-                        <p>nc-credit-card</p>
-                        <em>\ea27</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-delivery-fast" />
-                        <p>nc-delivery-fast</p>
-                        <em>\ea28</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-diamond" />
-                        <p>nc-diamond</p>
-                        <em>\ea29</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-email-85" />
-                        <p>nc-email-85</p>
-                        <em>\ea2a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-favourite-28" />
-                        <p>nc-favourite-28</p>
-                        <em>\ea2b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-glasses-2" />
-                        <p>nc-glasses-2</p>
-                        <em>\ea2c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-globe-2" />
-                        <p>nc-globe-2</p>
-                        <em>\ea2d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-globe" />
-                        <p>nc-globe</p>
-                        <em>\ea2e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-hat-3" />
-                        <p>nc-hat-3</p>
-                        <em>\ea2f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-headphones" />
-                        <p>nc-headphones</p>
-                        <em>\ea30</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-html5" />
-                        <p>nc-html5</p>
-                        <em>\ea31</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-image" />
-                        <p>nc-image</p>
-                        <em>\ea32</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-istanbul" />
-                        <p>nc-istanbul</p>
-                        <em>\ea33</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-key-25" />
-                        <p>nc-key-25</p>
-                        <em>\ea34</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-laptop" />
-                        <p>nc-laptop</p>
-                        <em>\ea35</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-layout-11" />
-                        <p>nc-layout-11</p>
-                        <em>\ea36</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-lock-circle-open" />
-                        <p>nc-lock-circle-open</p>
-                        <em>\ea37</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-map-big" />
-                        <p>nc-map-big</p>
-                        <em>\ea38</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-minimal-down" />
-                        <p>nc-minimal-down</p>
-                        <em>\ea39</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-minimal-left" />
-                        <p>nc-minimal-left</p>
-                        <em>\ea3a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-minimal-right" />
-                        <p>nc-minimal-right</p>
-                        <em>\ea3b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-minimal-up" />
-                        <p>nc-minimal-up</p>
-                        <em>\ea3c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-mobile" />
-                        <p>nc-mobile</p>
-                        <em>\ea3d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-money-coins" />
-                        <p>nc-money-coins</p>
-                        <em>\ea3e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-note-03" />
-                        <p>nc-note-03</p>
-                        <em>\ea3f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-palette" />
-                        <p>nc-palette</p>
-                        <em>\ea40</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-paper" />
-                        <p>nc-paper</p>
-                        <em>\ea41</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-pin-3" />
-                        <p>nc-pin-3</p>
-                        <em>\ea42</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-planet" />
-                        <p>nc-planet</p>
-                        <em>\ea43</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-refresh-69" />
-                        <p>nc-refresh-69</p>
-                        <em>\ea44</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-ruler-pencil" />
-                        <p>nc-ruler-pencil</p>
-                        <em>\ea45</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-satisfied" />
-                        <p>nc-satisfied</p>
-                        <em>\ea46</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-scissors" />
-                        <p>nc-scissors</p>
-                        <em>\ea47</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-send" />
-                        <p>nc-send</p>
-                        <em>\ea48</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-settings-gear-65" />
-                        <p>nc-settings-gear-65</p>
-                        <em>\ea49</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-settings" />
-                        <p>nc-settings</p>
-                        <em>\ea4a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-share-66" />
-                        <p>nc-share-66</p>
-                        <em>\ea4b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-shop" />
-                        <p>nc-shop</p>
-                        <em>\ea4c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-simple-add" />
-                        <p>nc-simple-add</p>
-                        <em>\ea4d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-simple-delete" />
-                        <p>nc-simple-delete</p>
-                        <em>\ea4e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-simple-remove" />
-                        <p>nc-simple-remove</p>
-                        <em>\ea4f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-single-02" />
-                        <p>nc-single-02</p>
-                        <em>\ea50</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-single-copy-04" />
-                        <p>nc-single-copy-04</p>
-                        <em>\ea51</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-sound-wave" />
-                        <p>nc-sound-wave</p>
-                        <em>\ea52</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-spaceship" />
-                        <p>nc-spaceship</p>
-                        <em>\ea53</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-sun-fog-29" />
-                        <p>nc-sun-fog-29</p>
-                        <em>\ea54</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-support-17" />
-                        <p>nc-support-17</p>
-                        <em>\ea55</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tablet-2" />
-                        <p>nc-tablet-2</p>
-                        <em>\ea56</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tag-content" />
-                        <p>nc-tag-content</p>
-                        <em>\ea57</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tap-01" />
-                        <p>nc-tap-01</p>
-                        <em>\ea58</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tie-bow" />
-                        <p>nc-tie-bow</p>
-                        <em>\ea59</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tile-56" />
-                        <p>nc-tile-56</p>
-                        <em>\ea5a</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-time-alarm" />
-                        <p>nc-time-alarm</p>
-                        <em>\ea5b</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-touch-id" />
-                        <p>nc-touch-id</p>
-                        <em>\ea5c</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-trophy" />
-                        <p>nc-trophy</p>
-                        <em>\ea5d</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-tv-2" />
-                        <p>nc-tv-2</p>
-                        <em>\ea5e</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-umbrella-13" />
-                        <p>nc-umbrella-13</p>
-                        <em>\ea5f</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-user-run" />
-                        <p>nc-user-run</p>
-                        <em>\ea60</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-vector" />
-                        <p>nc-vector</p>
-                        <em>\ea61</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-watch-time" />
-                        <p>nc-watch-time</p>
-                        <em>\ea62</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-world-2" />
-                        <p>nc-world-2</p>
-                        <em>\ea63</em>
-                      </li>
-                      <li>
-                        <i className="nc-icon nc-zoom-split" />
-                        <p>nc-zoom-split</p>
-                        <em>\ea64</em>
-                      </li>
-                    </ul>
-                  </section>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+      const uploaddata = new FormData();
+      if(img !== "https://www.freeiconspng.com/uploads/blue-up-file-circle-document-upload-icon-23.png" && img !=="" )
+      {
+        console.log("There is pic");
+        uploaddata.append('Imagefromuser',img);
+        uploaddata.append('Objects',null);
+        uploaddata.append('Success',false);
+        uploaddata.append('Time',null);
+        uploaddata.append('Lat',null);
+        uploaddata.append('Lng',null);
+        // uploaddata.append('Boxespic',null);
+        //why Img.name is error?
+        // for (var pair of uploaddata.entries()) {
+        //   console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+      
+        // header is missing?
+        axios.post('http://127.0.0.1:8000/picwithmodel/imageformodelList/',uploaddata)
+
+        .then((response)=> {
+            setSend(true)
+            console.log("response.data=",response.data);
+            getresult(response.data.id);
+            getpicresult();
+            
+          })
+        .catch((error) =>  console.log(error))
+      }
+      
+      else
+        console.log("There is NO pic");
+      
+      
+      const iterate_val=(Result) =>{
+        console.log("First Result=",Result);
+        
+        // single qoutes to double qoutes
+        const newResult=Result.replace(/'/g,'"');
+        console.log("newResult=",newResult);
+
+        // convert string to object
+        let convert2obj=JSON.parse(newResult);
+        console.log("First convert2obj=",convert2obj);
+        console.log("type=",typeof convert2obj);
+
+        // const removeNull=()=>{
+        //   convert2obj.filter(x=>x !== null)
+        // };
+        // console.log("filter null=",convert2obj);
+
+        //rename good==ลูกถ้วยสภาพปกติ
+        const clone = (obj) => Object.assign({}, obj);
+
+        const renameKey = (object, key, newKey) => {
+          let clonedObj = clone(object);
+          const targetKey = clonedObj[key];
+          
+          if (targetKey==null){
+            console.log("skip null value");
+            return object;
+          }
+          delete clonedObj[key];
+          clonedObj[newKey] = targetKey;
+          return clonedObj;
+         
+          
+        };
+        
+        convert2obj = renameKey(convert2obj, 'good', 'ลูกถ้วยสภาพปกติ');
+        convert2obj = renameKey(convert2obj, 'crack', 'ลูกถ้วยแตก,บิ่น');
+        console.log("after changed key=",convert2obj); 
+        console.log("type changed key=",typeof convert2obj); 
+
+      
+        // javascript object to array 
+        const entries = Object.entries(convert2obj)
+        console.log("entries=",entries);
+        setResult(entries);
+      }
+     
+     
+      
+      
+      
+      const getresult = (id) =>{
+        // header is missing?
+        axios.get(`http://127.0.0.1:8000/picwithmodel/imageformodelDetail/${id}`)
+
+        .then((response)=>{
+          console.log("response=",response)
+          console.log("response.data.Objects=",response.data.Objects)
+          iterate_val(response.data.Objects);
+          
+          
+        })
+        .catch((error) =>  console.log(error))
+      }
+
+      const getpicresult = () =>{
+        setPicresult('http://127.0.0.1:8000/static/img/test.jpeg')
+      }
+  }
+
+    return (
+        <div style={{backgroundColor:"#F8F8F8"}}>
+          <Navbar  className="justify-content-between" style={{backgroundColor:"#FFFFFF"}} expand="lg" >
+         
+              <Container  style={{backgroundColor:"#FFFFFF"}}>
+                <Navbar.Brand href="/" >
+                  <img
+                    src="/AiDea_logo5.jpg"
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-top"
+                    alt="AideaLogo"
+                  />
+                </Navbar.Brand>
+                
+                <Navbar.Toggle aria-controls = "basic-navbar-nav"/>
+                <Navbar.Collapse id = "basic-navbar-nav">
+                  <Nav fill variant="tabs" defaultActiveKey="#action2">
+                    <Nav.Link href="#action1">Dashboard</Nav.Link>
+                    <Nav.Link href="#action2">Project</Nav.Link>
+                    <Nav.Link href="#action3">Help</Nav.Link>
+                  </Nav>
+                  <div className = "me-auto"></div>
+                  <Nav>
+                    <Nav.Link href="#action4" target="_blank">HomePage</Nav.Link>
+                  </Nav>
+                
+                </Navbar.Collapse>
+                
+              </Container>
+          </Navbar>    
+
+          <Container style={{padding:20,marginTop:20}}>
+            <br/>
+            <h3 style={{textAlign:"left"}}>Create New Project</h3>
+            <br/>
+            
+            <Row>
+              <Col xs={12} md={12} lg={8} xl={8} style={{backgroundColor:"#FFFFFF",padding:10,marginTop:10}}>
+              <h5 style={{textAlign:"left"}}>Project Name</h5>
+                <Card style={{marginTop:10,marginBottom:10}}>
+                  <Card.Body>
+                    <Card.Text>PEAWBA22</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+          
+              <Col xs={12} md={12} lg={4} xl={4} style={{backgroundColor:"#FFFFFF",padding:10,marginTop:10}}>
+              <h5 style={{textAlign:"left"}}>Circuit-KM</h5>
+                <Card style={{marginTop:10,marginBottom:10}}>
+                  <Card.Body>
+                    <Card.Text>80</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              
+            </Row>
+          </Container>
+
+          <Container style={{backgroundColor:"#F8F8F8",marginTop:10}}>
+            {/* Inside Upload Photo */}
+            <Row>
+              <Col xs={12} md={12} lg={4} xl={4} style={{backgroundColor:"#F8F8F8",padding:10,marginTop:10}}>
+              <Container style={{backgroundColor:"#FFFFFF",padding:10,marginTop:10}}>
+                  <Card.Title>Upload Photo</Card.Title>
+                  <Card style={{padding:10,margin:10}}>
+                    <Card.Body >
+                      <Card.Img varaint="top" src={img} alt="preview upload" />
+                      <br/>
+                      <Card.Title>Upload Image Here</Card.Title>
+                      <Card.Text>To Use Image Processing</Card.Text>
+                    
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" onChange={(event)=>picinputHandler(event)} accept="image/*" class="custom-file-input" id="inputGroupFile01" variant="outline-warning"/>
+                          </div>
+                          
+                          <div class="button-group">
+                            
+                            <div>
+                              <Button onClick={()=>submitpic()} variant="outline-warning">Submit For Processing</Button>
+                            </div>
+                            <br/>
+                            <div>
+                              <Button onClick={()=>resetpicHandler()} variant="outline-primary" >Reset Your Image</Button>
+                            </div>
+                            
+                          </div>
+                        </div>
+                    
+                    </Card.Body>
+                  </Card>
+                </Container>
+                <Container style={{backgroundColor:"#FFFFFF",padding:20,marginTop:10}}>
+                  <Row>
+                    <Col xs={12} md={12} lg={12} xl={12} style={{backgroundColor:"#FFFFFF"}}>
+                    <Card.Title>Uploading Status</Card.Title>
+                      <Card>
+                        <Card.Body>
+                          <h6 style={{textAlign:"left",marginTop:20}}>14 of 32 Photos</h6>
+                          <ProgressBar now={60} />
+                          <Button style={{padding:10,marginTop:20}} variant="outline-primary">Cancel</Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>            
+                  </Row>
+                </Container>
+              </Col>
+              
+              <Col xs={12} md={12} lg={8} xl={8} style={{backgroundColor:"#F8F8F8",padding:10,marginTop:10}}>
+                       
+                <Container style={{backgroundColor:"#FFFFFF",padding:10,marginTop:10}}>                
+                <Row style={{backgroundColor:"#FFFFFF",marginLeft:5,marginRight:5}}>
+                  <Card.Title>Distribution System (22 KV)</Card.Title>
+                    
+                  <Col xs={12} md={12} lg={7} xl={7} style={{backgroundColor:"#FFFFFF"}}>
+                        
+                      <Card style={{marginBottom:10}}>
+                          <Row>
+                          <img src={picresult} alt="preview picresult"/>
+                          </Row>
+                        <Card.Body >
+                        
+                          {/* <Card.Img varaint="top" src={picresult} alt="preview picresult" /> */}
+                          
+                          <Card.Text>Take A Second For Your Result !</Card.Text>
+                            <div>
+                              <Button  variant="outline-success">Show Result</Button>
+                            </div>
+                          <br/>
+                          <br/>
+                          <Card.Title>
+                          
+                            <div>
+                            <Card.Title>After Processing</Card.Title>
+                            <h6>{send && <alert variant="info">Successfully Submit For Processing !</alert>}</h6>
+                            </div>
+                            <div>
+                              <br/>
+                              <Card.Text>Confidence Level Results : </Card.Text>
+                              <ul>
+                                {/* {result.map(el=>(<li key={el.id}> {el} % </li>))} */}
+                              <Card.Text>{result.map(el=>(<li key={el.id}> {el.join("= ")} %  </li>))}</Card.Text>
+                              </ul>
+                              
+                            </div>
+                            <br/>
+                            <br/>
+                          </Card.Title>
+                          
+                          
+                        </Card.Body>
+                      </Card>
+                    
+                  </Col>
+                  <Col xs={12} md={12} lg={5} xl={5} style={{backgroundColor:"#FFFFFF"}}>
+
+                      <Card>
+                          <Card.Body>
+                            <Card.Title>Tower No.10050513</Card.Title>
+                          </Card.Body>
+                      </Card>
+                    
+                    <Container style={{backgroundColor:"#FFFFFF",padding:20,marginTop:10}}> 
+                    <Row>
+                      <Card.Title>หน่วยงาน</Card.Title>
+                        <Card>
+                          <Card.Body>
+                            <Card.Text>สังกัด กฟส.อ.วชิรบารมี</Card.Text>
+                            <Card.Text>สถานีไฟฟ้า วชิรบารมี</Card.Text>
+                            <Card.Text>วงจร WBA22</Card.Text>
+                            <Card.Text>จำนวน 80 วงจร-กม.</Card.Text>
+                          </Card.Body>
+                        </Card>            
+                    </Row>                                
+                    </Container>
+                    <Container style={{backgroundColor:"#FFFFFF",padding:20,marginTop:10}}> 
+                    <Row>
+                      
+                        <Card.Title>อุปกรณ์</Card.Title>
+                        <Card>
+                          <Card.Body>
+                            <Card.Text>แรงดัน 22KV</Card.Text>
+                            <Card.Text>ประเภท  ลูกถ้วยระบบจำหน่าย</Card.Text>
+                            <div>
+                              <Card.Text>สภาพการชำรุด : </Card.Text>
+                              <ul>
+                              <Card.Text>{result.map(el=>(<li key={el.id}> {el.join("= ")} %  </li>))}</Card.Text>
+                              </ul>
+                            </div>
+                          </Card.Body>
+                        </Card>
+                      
+                    </Row>                                
+                    </Container>
+                    <Container style={{backgroundColor:"#FFFFFF",padding:20,marginTop:10}}> 
+                    <Row>
+                      <Card.Title>พิกัด</Card.Title>
+                        <Card>
+                          <Card.Body>
+                            <Card.Text>16.12345,100.54321</Card.Text>
+                          </Card.Body>
+                        </Card> 
+                    </Row>                                
+                    </Container>
+                    
+                  </Col>
+                </Row>
+                </Container>
+                          
+              </Col>
+             
+            </Row>
+          </Container>
+
+          
+
+          <br/>
+          <footer style={{textAlign:"center",backgroundColor:"rgb(240,240,240)",padding:20}}>
+            Developed By <t/>
+            <a href="/" target="_blank" style={{marginleft:4}}>AiDea</a>
+          </footer>
+
+          
+          {/* <div>
+            {send && <alert variant="info">Successfully Submit For Processing</alert>}
+          </div> */}
+          {/* <div>
+            <label>
+              Image :
+              <input type="file"  onChange={(event)=>picinputHandler(event)} accept="image/*"/>
+            </label>
+          </div> */}
+          {/* <div className="img-holder">
+            <img src={img} alt="preview"/>
+          </div> */}
+          {/* <div className="img-holder">
+            <img src={picresult} alt="picresult"/>
+          </div>
+          <div>
+              {result && <h2>Result : {result}</h2>}
+          </div> */}
+          {/* <div>
+            <button onClick={()=>submitpic()} variant="primary">Submit For Processing</button>
+          </div>
+          <div>
+            <button onClick={()=>resetpicHandler()} variant="secondary">Reset Your Image</button>
+          </div> */}
+        
+          
       </div>
-    </>
-  );
+    )
+  
 }
-
 export default Icons;
